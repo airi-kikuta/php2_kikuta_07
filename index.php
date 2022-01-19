@@ -21,19 +21,19 @@
     <header>
         <nav class="navbar navbar-default">
             <div class="container-fluid">
-                <div class="navbar-header"><a class="navbar-brand" href="select.php">データ一覧</a></div>
+                <div class="navbar-header"><a class="navbar-brand" href="select2.php">データ一覧</a></div>
             </div>
         </nav>
     </header>
 
 
-    <!-- step 1 -->
+    <!-- 準備 1 -->
     <form method="post" action="insert.php">
         <div class="jumbotron">
             <fieldset>
                 <legend>BookMark</legend>
-                <label>book name: <input type="text" name="book_name"></label><br>
-                <label>book URL: <input type="text" name="book_url"></label><br>
+                <label>book name: <input type="text" name="name"></label><br>
+                <label>book URL: <input type="text" name="url"></label><br>
                 <label><textArea name="comment" rows="4" cols="40"></textArea></label><br>
                 <input type="submit" value="送信">
             </fieldset>
