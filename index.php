@@ -6,14 +6,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>データ登録</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        div {
-            padding: 10px;
-            font-size: 16px;
-        }
-    </style>
+    <title>BookMark</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -27,17 +21,12 @@
     </header>
 
 
-    <!-- 準備 1 -->
     <form method="post" action="insert.php">
-        <div class="jumbotron">
-            <fieldset>
-                <legend>BookMark</legend>
-                <label>book name: <input type="text" name="name"></label><br>
-                <label>book URL: <input type="text" name="url"></label><br>
-                <label><textArea name="comment" rows="4" cols="40"></textArea></label><br>
-                <input type="submit" value="送信">
-            </fieldset>
-        </div>
+        <h1>BookMark</h1>
+        <input type="text" placeholder="タイトル" name="title"><br>
+        <input type="text" placeholder="著者" name="author"><br>
+        <input type="text" placeholder="出版社" name="publisher"><br>
+        <button type="submit" value="入力">入力</button>
     </form>
 
 

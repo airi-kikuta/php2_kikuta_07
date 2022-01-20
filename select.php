@@ -2,16 +2,12 @@
 <!-- 3 データを表示する-->
 
 <?php
-
+// 関数
 require_once('funcs.php');
 
 
-//1.  DB接続します
-try {
-  $pdo = new PDO('mysql:dbname=book_db; charset=utf8; host=localhost', 'root', 'root');
-} catch (PDOException $e) {
-  exit('DBConnectError'.$e->getMessage());
-}
+//1.  DB接続
+$pdo = db_conn();
 
 //２．データ取得SQL作成
 $stmt = $pdo->prepare("SELECT * FROM book_table");
@@ -26,10 +22,9 @@ if ($status==false) {
 }else{
   while( $result = $stmt->fetch(PDO::FETCH_ASSOC)){
     $view .= '<p>';
-    $view .= h($result['date']) . '/'. h($result['id']) . '/'. h($result['name']) . '/'. h($result['url']) . '/'. h($result['comment']);
+    $view .= 'No.' . h($result['id']) . '_'. h($result['title']) . '_'. h($result['author']) . '_'. h($result['publisher']) . '_'. h($result['date']);
     $view .= '</p>';
   }
-
 }
 ?>
 
@@ -38,32 +33,13 @@ if ($status==false) {
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>フリーアンケート表示</title>
-<link rel="stylesheet" href="css/range.css">
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<style>div{padding: 10px;font-size:16px;}</style>
+<title>BookDatabase</title>
+<link rel="stylesheet" href="style.css">
 </head>
-<body id="main">
-<!-- Head[Start] -->
+<body>
 
-<header>
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-      <a class="navbar-brand" href="index.php">データ登録</a>
-      </div>
-    </div>
-  </nav>
-</header>
-<!-- Head[End] -->
-
-<!-- Main[Start] -->
-<div>
-    <div class="container jumbotron"><?= $view ?></div>
-</div>
-<!-- Main[End] -->
+  <a href="index.php">戻る</a>
+  <div class="table"><?= $view ?></div>
 
 </body>
 </html>

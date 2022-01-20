@@ -2,26 +2,24 @@
 <!-- 2 DBに接続する -->
 
 <?php
-// 準備
-$name = $_POST['name'];
-$url = $_POST['url'];
-$comment = $_POST['comment'];
+// 関数
+require_once('funcs.php');
 
+// 準備
+$title = $_POST['title'];
+$author = $_POST['author'];
+$publisher = $_POST['publisher'];
 
 
 // step 1 ------------------------------------
-try {
-    $pdo = new PDO('mysql:dbname=book_db; charset=utf8; host=localhost', 'root', 'root');
-} catch (PDOException $e) {
-    exit('DBConnectError:' . $e->getMessage());
-}
+$pdo = db_conn();
 
 // step 2 ------------------------------------
-$stmt = $pdo->prepare("INSERT INTO book_table(id, name, url, comment, date)
-                       VALUES(NULL, :name, :url, :comment, sysdate())");
-$stmt->bindValue(':name', $name, PDO::PARAM_STR);
-$stmt->bindValue(':url', $url, PDO::PARAM_STR);
-$stmt->bindValue(':comment', $comment, PDO::PARAM_STR);
+$stmt = $pdo->prepare("INSERT INTO book_table(id, title, author, publisher, date)
+                       VALUES(NULL, :title, :author, :publisher, sysdate())");
+$stmt->bindValue(':title', $title, PDO::PARAM_STR);
+$stmt->bindValue(':author', $author, PDO::PARAM_STR);
+$stmt->bindValue(':publisher', $publisher, PDO::PARAM_STR);
 $status = $stmt->execute();
 
 
